@@ -1072,7 +1072,7 @@ WORD COUNT
 SUGGESTIONS FOR IMPROVEMENT
 Be encouraging but honest. Write accessible English for a B2 learner. Do NOT write in German.`;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:`Please evaluate this student's mediation email:\n\n${text}`}]})});
+    const r=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:`Please evaluate this student's mediation email:\n\n${text}`}]})});
     const data=await r.json();
     const raw=data.content.map(c=>c.text||'').join('');
     const fmt=raw
